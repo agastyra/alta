@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belajar Vue.js</title>
+  </head>
+  <body>
+    <h3>Belajar Vue.js v3</h3>
+
+    <div id="app">
+      <ol>
+        <li v-for="item in items">{{ item }}</li>
+      </ol>
+
+      <form @submit.prevent="submitForm">
+        <input type="text" name="text" />
+        <button type="submit">Tambahkan</button>
+      </form>
+      <p v-show="items.length >= 4">Hebat!</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      obj = {
+        data() {
+          return {
+            items: ["Belajar Vue.js", "Belajar Laravel 9"],
+          };
+        },
+        methods: {
+          submitForm(event) {
+            const els = event.target.elements;
+            let text = els.text.value;
+
+            this.items.push(text);
+
+            els.text.value = "";
+          },
+        },
+      };
+
+      const app = Vue.createApp(obj);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
